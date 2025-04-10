@@ -8,7 +8,7 @@
     "dev": "nodemon --watch src --ext ts --exec ts-node src/server.ts",
     "lint": "eslint . --ext .ts",
     "test": "jest --coverage",
-    "build:css": "tailwindcss -i ./views/main.css -o ./public/dist/main.css --watch"
+    "build:css": "tailwindcss -i ./views/main.css -o ./public/dist/main.css"
   },
   "keywords": [],
   "author": "",

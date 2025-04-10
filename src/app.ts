@@ -1,6 +1,7 @@
 import express from 'express';
 import session from 'express-session';
 import flash from 'connect-flash';
+import path from 'path';
 
 import spamRoutes from "./routes/spammer";
 import { errorHandler } from './middlewares/errorHandler';
@@ -20,7 +21,7 @@ app.set('view engine', 'ejs');
 
 app.use(flash());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
 app.use("/", spamRoutes);
