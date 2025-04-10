@@ -9,6 +9,9 @@ import config from './config/config';
 
 const app = express();
 
+app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(
   session({
     secret: config.flashSecret,
@@ -16,12 +19,9 @@ app.use(
     saveUninitialized: true,
   }),
 );
-
-app.set('view engine', 'ejs');
-
 app.use(flash());
+
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
 app.use("/", spamRoutes);
