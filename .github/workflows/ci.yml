@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    env:
+      JWT_SECRET: ${{ secrets.FLASH_SECRET }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup node js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 22
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Compile Typescript
+      run: npm run build
+
+    - name: Run linter
+      run: npm run lint
+
+    # - name: Run tests
+    #   run: npm test
